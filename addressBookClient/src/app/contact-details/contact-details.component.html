@@ -1,0 +1,63 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+            <h4>Contact Details</h4>
+        </div>
+    <div *ngIf="contact" class="panel-body">
+        <div>
+            {{contact.firstName}}  {{contact.lastName}}
+        </div>
+        <br>
+        <div>
+            <label>Phone Numbers: </label>  <button  class="mat-icon-button btn-info" (click)="addPhoneNumber()">New</button>
+            <table class="table">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let phoneNumber of contact.phoneNumbers">
+                        <td>{{phoneNumber.phoneNumber}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <div [hidden]="hideAddPhoneNumber" style="width: 400px;">
+                            <form (ngSubmit)="onPhoneNumberSubmit(contact.id)">      
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="phoneNumber" required [(ngModel)]="phoneNumber" name="phoneNumber">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-info btn-sm">Add phone number</button>
+                            </form>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr/>
+        <div>
+            <label>Emails: </label> <button  class="mat-icon-button btn-info" (click)="addEmail()">New</button>
+            <table class="table">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let email of contact.emails">
+                        <td>{{email.email}}</td>         
+                    </tr>
+                    <tr>
+                        <div [hidden]="hideAddEmail" style="width: 400px;">
+                            <form (ngSubmit)="onEmailSubmit(contact.id)">      
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="email" required [(ngModel)]="email" name="email">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-info btn-sm">Add email</button>
+                            </form>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn btn-info btn-sm" (click)="editContact(contact.id)">Edit</button>
+
+        <hr/>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<h4>Edit Contact</h4>
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit(contact.id)">
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="firstName" required [(ngModel)]="contact.firstName" name="firstName">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="contact.lastName" name="lastName">
+        </div>
+        <div class="form-group">
+            <label>Phone Numbers: </label> 
+            <ul class="form-fields" *ngFor="let phoneNumber of contact.phoneNumbers; let i = index;">
+                <li>
+                    <input type="text" id ="{{phoneNumber.id}}" name="{{phoneNumber.id}}" [(ngModel)]="phoneNumber.phoneNumber">
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+                <label>Emails: </label> 
+                <ul class="form-fields" *ngFor="let email of contact.emails; let j = index;">
+                    <li>
+                        <input type="text" id ="{{email.id}}" name="{{email.id}}" [(ngModel)]="email.email">
+                    </li>
+                </ul>
+            </div>
+        <!--<div class="form-group">
+            <label for="name">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" required [(ngModel)]="contact.phoneNumber" name="phoneNumber">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input type="text" class="form-control" id="email" required [(ngModel)]="contact.email" name="email">
+        </div>-->
+
+        <button type="submit" class="btn btn-info">Update</button>
+    </form>
+</div>
